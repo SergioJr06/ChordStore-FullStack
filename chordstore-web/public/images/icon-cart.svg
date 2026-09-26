@@ -1,0 +1,13 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="38" height="32" viewBox="0 0 38 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="cart-outline" clip-path="url(#clip0_0_11)">
+<path id="Vector" d="M11.1198 27.2C11.8875 27.2 12.5098 26.7523 12.5098 26.2C12.5098 25.6477 11.8875 25.2 11.1198 25.2C10.3521 25.2 9.72982 25.6477 9.72982 26.2C9.72982 26.7523 10.3521 27.2 11.1198 27.2Z" stroke="#EBE5DC" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" d="M30.5794 27.2C31.3471 27.2 31.9694 26.7523 31.9694 26.2C31.9694 25.6477 31.3471 25.2 30.5794 25.2C29.8118 25.2 29.1895 25.6477 29.1895 26.2C29.1895 26.7523 29.8118 27.2 30.5794 27.2Z" stroke="#EBE5DC" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M0 5.20001H5.5599L9.72982 22.2H31.9694" stroke="#EBE5DC" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_4" d="M6.94987 15H28.6196C28.7803 15.0001 28.9361 14.9601 29.0604 14.8868C29.1848 14.8135 29.27 14.7115 29.3015 14.5981L31.8035 5.59813C31.8237 5.52555 31.8212 5.45066 31.7963 5.37886C31.7714 5.30705 31.7246 5.24012 31.6593 5.1829C31.5941 5.12567 31.512 5.07959 31.419 5.04796C31.326 5.01633 31.2244 4.99995 31.1215 5H4.16992" stroke="#EBE5DC" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_0_11">
+<rect width="38" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>

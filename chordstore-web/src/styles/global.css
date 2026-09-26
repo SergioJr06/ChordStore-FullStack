@@ -1,0 +1,57 @@
+:root {
+  /* Paleta extraída do Figma */
+  --bg: #282322;
+  --panel: #2b2625;
+  --nav: #3c3736;
+  --cream: #ebe5dc;
+  --light: #d9d9d9;
+  --gold: #ffcc4a;
+  --gold-deep: #c29b38;
+  --red: #ea3838;
+  --red-deep: #c42727;
+  --glass: rgba(217, 217, 217, 0.2);
+  --shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  --inset: inset 0 4px 4px rgba(0, 0, 0, 0.25);
+
+  --f-display: 'Righteous', system-ui, sans-serif;
+  --f-cond: 'Freeman', 'Arial Narrow', Impact, sans-serif;
+  --f-nav: 'ABeeZee', system-ui, sans-serif;
+  --f-serif: 'Aleo', Georgia, serif;
+  --f-ui: 'Inter', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--cream);
+  font-family: var(--f-ui);
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+button:disabled { cursor: not-allowed; opacity: 0.55; }
+ul { list-style: none; }
+a { color: inherit; }
+h1, h2, h3 { font-weight: 400; }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+}
+
+.marquee-text {
+  display: inline-block;
+  animation: marquee 15s linear infinite;
+}

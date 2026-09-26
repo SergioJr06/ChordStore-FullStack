@@ -1,0 +1,17 @@
+# ===== Backend (.NET) =====
+**/bin/
+**/obj/
+.vs/
+*.user
+*.suo
+
+# ===== Frontend (chordstore-web) =====
+chordstore-web/node_modules/
+chordstore-web/dist/
+chordstore-web/.env
+
+# ===== SO / Editores =====
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

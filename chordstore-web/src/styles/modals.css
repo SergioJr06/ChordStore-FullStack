@@ -1,0 +1,159 @@
+.overlay {
+  position: fixed; inset: 0; z-index: 100;
+  display: grid; place-items: center; padding: 16px; overflow: auto;
+  background: rgba(10, 8, 8, 0.7);
+}
+.modal {
+  position: relative;
+  width: min(var(--w, 700px), 100%);
+  background: var(--m-bg, var(--panel));
+  border-radius: var(--radius, 15px);
+  color: #fff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: pop 0.18s ease-out;
+}
+@keyframes pop { from { opacity: 0; transform: scale(0.97); } }
+@media (prefers-reduced-motion: reduce) { .modal { animation: none; } }
+
+.modal__exit { position: absolute; top: 18px; right: 22px; z-index: 2; line-height: 0; }
+
+.pill-title {
+  padding: 8px 16px; border-radius: 15px; background: var(--light);
+  box-shadow: var(--shadow), var(--inset);
+  color: #000; text-align: center; font: 900 clamp(15px, 3.2vw, 24px) var(--f-ui);
+}
+
+/* ---------- Carrinho ---------- */
+.modal--cart {
+  --w: 701px;
+  display: flex; flex-direction: column; align-items: center; gap: clamp(24px, 5vw, 44px);
+  padding: clamp(56px, 18vw, 130px) clamp(20px, 11vw, 83px) clamp(32px, 8vw, 90px);
+}
+.pill-title--cart {
+  width: 100%; border-radius: 10px; padding: clamp(14px, 3vw, 24px) 16px;
+  font-size: clamp(26px, 5.7vw, 40px);
+}
+.cart__empty { text-align: center; text-shadow: var(--shadow); color: var(--light); }
+.cart__empty-title { font: 900 clamp(20px, 4.6vw, 32px) var(--f-ui); }
+.cart__empty-text { margin-top: 28px; font: 400 clamp(20px, 5vw, 36px) var(--f-ui); }
+.cart__list { width: 100%; display: grid; gap: 12px; }
+.cart__list li {
+  display: grid; grid-template-columns: 56px 1fr auto; align-items: center; gap: 14px;
+  padding: 10px 14px; border-radius: 10px; background: rgba(217, 217, 217, 0.1);
+}
+.cart__list img { width: 56px; height: 56px; border-radius: 8px; object-fit: cover; background: #fff; }
+.cart__name { font: 600 15px / 1.3 var(--f-ui); }
+.cart__meta { margin-top: 2px; color: var(--light); font-size: 14px; }
+.cart__list button { color: var(--gold); text-decoration: underline; font-size: 14px; }
+.cart__total { align-self: flex-end; font: 900 24px var(--f-ui); }
+
+.pill-btn {
+  width: min(470px, 100%); height: clamp(64px, 12vw, 91px);
+  border-radius: 50px; background: var(--light); color: #000;
+  box-shadow: var(--shadow), var(--inset); text-shadow: var(--shadow);
+  font: 900 clamp(24px, 5.5vw, 40px) var(--f-ui);
+}
+
+/* ---------- Login ---------- */
+.modal--login { --w: 691px; padding: 69px clamp(16px, 5vw, 39px) 18px; }
+.modal--login form { display: grid; gap: 14px; }
+.modal--login .pill-title { margin: 0 -8px 34px; }
+.modal--login label { font: 900 clamp(18px, 3.5vw, 24px) var(--f-ui); }
+.modal--login input {
+  width: min(482px, 100%); height: 41px; padding: 0 14px; margin-bottom: 20px;
+  border: 0; border-radius: 15px; background: var(--light);
+  box-shadow: var(--shadow), var(--inset);
+  color: #000; font: 400 clamp(20px, 4vw, 28px) var(--f-serif);
+}
+.modal--login input::placeholder { color: #000; opacity: 0.3; }
+.form-error { color: #ff9a9a; font-size: 15px; }
+.login__submit {
+  justify-self: end; width: 125px; height: 40px;
+  border-radius: 15px; background: var(--light); color: #000;
+  box-shadow: var(--shadow), var(--inset); font: 900 24px var(--f-ui);
+}
+
+/* ---------- Localização ---------- */
+.modal--location { --w: 551px; padding: 40px clamp(20px, 6vw, 31px) 36px; }
+.modal--location .pill-title { width: min(358px, 100%); margin: 0 auto 44px; }
+.modal--location dt { margin-top: 26px; font: 900 clamp(18px, 4vw, 24px) var(--f-ui); }
+.modal--location dt:first-child { margin-top: 0; }
+.modal--location dd { margin-top: 8px; font: 400 clamp(18px, 4vw, 24px) / 1.3 var(--f-ui); }
+
+/* ---------- Produto ---------- */
+.modal--product {
+  --w: 1150px; --radius: 50px;
+  display: flex; flex-direction: column; align-items: center; gap: clamp(16px, 3vw, 30px);
+  padding: clamp(56px, 9vw, 92px) clamp(16px, 5vw, 70px) clamp(24px, 4vw, 44px);
+}
+.product__gallery { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(12px, 3.5vw, 40px); }
+.product__gallery img {
+  height: clamp(150px, 29vw, 340px); width: auto; max-width: 100%;
+  object-fit: cover; border-radius: 30px; background: #fff;
+  box-shadow: var(--shadow);
+}
+.product__title {
+  max-width: 608px; color: var(--m-title); text-align: center; text-shadow: var(--shadow);
+  font: clamp(20px, 3.4vw, var(--title-size)) / 1.2 var(--f-cond);
+}
+.product__buy { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: clamp(12px, 3vw, 32px); }
+.product__price {
+  color: var(--m-price); text-align: center; text-shadow: var(--shadow);
+  font: clamp(20px, 3.5vw, var(--price-size)) var(--f-cond);
+}
+.buy-btn {
+  width: min(329px, 100%); height: clamp(64px, 8vw, 91px);
+  border-radius: 50px; background: var(--glass); color: #000;
+  box-shadow: var(--shadow), var(--inset); font: clamp(28px, 4vw, 45px) var(--f-display);
+}
+.cart-btn { position: relative; flex: none; width: 107px; height: 92px; }
+.cart-btn img { position: absolute; max-width: none; }
+.cart-btn__circle { left: -3.74%; top: 0; width: 107.48%; height: 108.7%; }
+.cart-btn__icon { left: 22%; top: 24%; width: 53%; height: 52%; }
+.product__added { min-height: 1.4em; color: var(--m-title); font: 16px var(--f-ui); }
+
+/* ---------- Promoção ---------- */
+.modal--promo {
+  --w: 1150px; --radius: 50px;
+  display: flex; flex-direction: column; align-items: center; gap: clamp(16px, 3vw, 32px);
+  padding: clamp(56px, 8vw, 70px) clamp(16px, 4vw, 45px) clamp(28px, 4vw, 48px);
+  background: #333 url('/images/fundo-promo.png') center / cover;
+  text-align: center;
+}
+.promo__title { color: #f21c1c; text-shadow: var(--shadow); font: clamp(40px, 8.4vw, 96px) var(--f-display); }
+.promo__body { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: clamp(16px, 3vw, 40px); }
+.promo__body img { width: min(405px, 100%); border-radius: 30px; background: #fff; box-shadow: var(--shadow); }
+.promo__body p { flex: 1 1 320px; max-width: 666px; text-shadow: var(--shadow); font: clamp(15px, 2.8vw, 32px) / 1.3 var(--f-display); }
+.promo__prices { color: var(--red); text-shadow: var(--shadow); font: clamp(24px, 5.6vw, 64px) var(--f-display); }
+.promo__buy {
+  width: min(472px, 100%); height: clamp(72px, 10vw, 115px);
+  border-radius: 90px; background: var(--glass); color: #000;
+  box-shadow: var(--shadow), var(--inset); text-shadow: var(--shadow);
+  font: clamp(36px, 7vw, 80px) var(--f-display);
+}
+
+/* ---------- Sobre nós ---------- */
+.modal--about {
+  --w: 1150px; --radius: 50px; --m-bg: #181717;
+  display: flex; flex-direction: column; align-items: center; gap: 22px;
+  padding: 15px clamp(16px, 5vw, 60px) 26px; text-align: center;
+}
+.about__banner { width: min(722px, 100%); height: 190px; object-fit: cover; box-shadow: var(--shadow); }
+.modal--about p { max-width: 896px; text-shadow: var(--shadow); font: clamp(15px, 2.6vw, 32px) / 1.3 var(--f-display); }
+.modal--about .about__copy { font-size: clamp(13px, 1.7vw, 22px); }
+
+/* ---------- Checkout (finalizar compra) ---------- */
+.checkout-form { width: 100%; display: grid; gap: 12px; text-align: left; }
+.checkout-form label { font: 900 clamp(15px, 2.6vw, 18px) var(--f-ui); }
+.checkout-form input,
+.checkout-form select {
+  width: 100%; height: 44px; padding: 0 14px;
+  border: 0; border-radius: 15px; background: var(--light);
+  box-shadow: var(--shadow), var(--inset);
+  color: #000; font: 400 clamp(16px, 3vw, 20px) var(--f-serif);
+}
+.checkout-form__actions {
+  width: 100%; display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 8px;
+}
+.checkout-form__actions .pill-btn { width: min(280px, 100%); height: clamp(52px, 9vw, 70px); font-size: clamp(18px, 4vw, 26px); }
+.pill-btn--ghost { background: transparent; color: var(--light); box-shadow: inset 0 0 0 2px var(--light); text-shadow: none; }
