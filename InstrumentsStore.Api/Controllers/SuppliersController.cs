@@ -27,7 +27,7 @@ public class SuppliersController : ControllerBase
 
     /// Recupera a lista completa de fornecedores ordenados alfabeticamente por nome.
     [HttpGet]
-    public async Task>> GetAll()
+    public async Task<ActionResult<IEnumerable<SupplierDto>>> GetAll()
     {
         // Include(s => s.Instruments): Aplica Eager Loading para carregar o relacionamento 1:N via JOIN no SQL gerado.
         // ToListAsync(): Executa a query de forma assíncrona, liberando a thread do threadpool durante o I/O de rede com o SGBD.
@@ -42,7 +42,7 @@ public class SuppliersController : ControllerBase
 
     /// Busca um fornecedor específico por chave primária (ID).
     [HttpGet("{id:int}")]
-    public async Task> GetById(int id)
+    public async Task<ActionResult<SupplierDto>> GetById(int id)
     {
         // FirstOrDefaultAsync: Envia LIMIT/TOP 1 ao banco de dados com filtro por PK.
         var supplier = await _context.Suppliers
@@ -57,7 +57,7 @@ public class SuppliersController : ControllerBase
 
     /// Persiste um novo fornecedor no banco de dados.
     [HttpPost]
-    public async Task> Create([FromBody] SupplierSaveDto dto)
+    public async Task<ActionResult<SupplierDto>> Create([FromBody] SupplierSaveDto dto)
     {
         // Validação defensiva de regra de negócio a nível de aplicação.
         if (string.IsNullOrWhiteSpace(dto.Name))
@@ -85,7 +85,7 @@ public class SuppliersController : ControllerBase
 
     /// Atualiza os dados de um fornecedor existente.
     [HttpPut("{id:int}")]
-    public async Task> Update(int id, [FromBody] SupplierSaveDto dto)
+    public async Task<ActionResult<SupplierDto>> Update(int id, [FromBody] SupplierSaveDto dto)
     {
         // Busca a entidade para vinculá-la ao Change Tracker do EF Core.
         var supplier = await _context.Suppliers
@@ -111,7 +111,7 @@ public class SuppliersController : ControllerBase
 
     /// Remove um fornecedor garantindo integridade referencial em nível de aplicação.
     [HttpDelete("{id:int}")]
-    public async Task Delete(int id)
+    public async Task<IActionResult> Delete(int id)
     {
         var supplier = await _context.Suppliers
             .Include(s => s.Instruments)
