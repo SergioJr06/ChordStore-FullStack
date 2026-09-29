@@ -1,4 +1,4 @@
-﻿{
+﻿{ // responsavel por definir as configurações de inicialização do projeto, como a porta e o ambiente de desenvolvimento
   "$schema": "https://json.schemastore.org/launchsettings.json",
   "profiles": {
     "http": {

@@ -1,6 +1,6 @@
 using System;
 
-namespace InstrumentsStore.Api.Models;
+namespace InstrumentsStore.Api.Models; 
 
 public class AdminUser
 {

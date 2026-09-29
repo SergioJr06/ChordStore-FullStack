@@ -1,6 +1,6 @@
 namespace InstrumentsStore.Api.Models;
-
-public enum SaleStatus
+// codigo gerado para enumerar os status de venda e métodos de pagamento
+public enum SaleStatus // 0 = Pendente, 1 = Pago, 2 = Cancelado
 {
     Pendente = 0,
     Pago = 1,

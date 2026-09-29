@@ -1,5 +1,5 @@
 namespace InstrumentsStore.Api.Models;
-
+// codigo gerado para representar um item de venda, que referencia a venda e o instrumento vendido
 public class SaleItem
 {
     public int Id { get; set; }

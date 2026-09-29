@@ -1,4 +1,6 @@
 @InstrumentsStore.Api_HostAddress = http://localhost:5079
+// Endpoint para obter a previsão do tempo
+// responsavel por fornecer informações sobre o clima atual e previsões futuras.
 
 GET {{InstrumentsStore.Api_HostAddress}}/weatherforecast/
 Accept: application/json

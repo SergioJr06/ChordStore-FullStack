@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace InstrumentsStore.Api.Models;
+namespace InstrumentsStore.Api.Models; 
 
 public class Customer
 {

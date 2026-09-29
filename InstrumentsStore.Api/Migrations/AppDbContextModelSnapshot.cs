@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-#nullable disable
+// codigo gerado automaticamente para o snapshot do modelo do Entity Framework Core
 
 namespace InstrumentsStore.Api.Migrations
 {

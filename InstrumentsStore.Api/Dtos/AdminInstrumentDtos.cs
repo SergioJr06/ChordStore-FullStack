@@ -2,10 +2,11 @@ using System;
 using System.Linq;
 using InstrumentsStore.Api.Models;
 
+// este codigo define os DTOs (Data Transfer Objects) para a entidade Instrument, usados na API do admin do InstrumentsStore.
+
 namespace InstrumentsStore.Api.Dtos;
 
-/// <summary>Representação completa do produto, usada só nas telas do admin.</summary>
-public record AdminInstrumentDto(
+public record AdminInstrumentDto( // DTO de instrumento para exibição no admin
     int Id,
     string Slug,
     string Name,
@@ -23,17 +24,17 @@ public record AdminInstrumentDto(
     int? SupplierId,
     string? SupplierName)
 {
-    public static AdminInstrumentDto From(Instrument i) => new(
+    public static AdminInstrumentDto From(Instrument i) => new( // método de fábrica para criar um AdminInstrumentDto a partir de um Instrument
         i.Id, i.Slug, i.Name, i.Section, i.Price, i.OldPrice, i.Installments, i.Description, i.ImageUrl,
         string.IsNullOrWhiteSpace(i.GalleryUrls)
             ? Array.Empty<string>()
             : i.GalleryUrls.Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries),
         i.Brand, i.StockQuantity,
         i.CategoryId, i.Category?.Name,
-        i.SupplierId, i.Supplier?.Name);
+        i.SupplierId, i.Supplier?.Name); // cria um array de URLs da galeria a partir da string separada por ponto e vírgula, se não for nula ou vazia
 }
 
-/// <summary>Payload de criação/edição enviado pelo formulário de produto do admin.</summary>
+// DTO de instrumento para salvar no admin (criação ou atualização)
 public record AdminInstrumentSaveDto(
     string Slug,
     string Name,
@@ -49,6 +50,6 @@ public record AdminInstrumentSaveDto(
     int? CategoryId,
     int? SupplierId)
 {
-    public string GalleryUrlsAsString() =>
+    public string GalleryUrlsAsString() => // método para converter o array de URLs da galeria em uma string separada por ponto e vírgula
         GalleryUrls == null || GalleryUrls.Length == 0 ? "" : string.Join(';', GalleryUrls.Where(g => !string.IsNullOrWhiteSpace(g)));
 }

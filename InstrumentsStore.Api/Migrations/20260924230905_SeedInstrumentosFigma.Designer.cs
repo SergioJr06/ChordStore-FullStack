@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
+// codigo gerado automaticamente pelo Entity Framework Core para a migração "SeedInstrumentosFigma"
 #nullable disable
 
 namespace InstrumentsStore.Api.Migrations

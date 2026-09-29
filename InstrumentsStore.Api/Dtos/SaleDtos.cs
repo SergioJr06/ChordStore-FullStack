@@ -2,16 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using InstrumentsStore.Api.Models;
-
+// Define os DTOs (Data Transfer Objects) para vendas na API da loja de instrumentos.
+// DTOs são usados para transferir dados entre o cliente e o servidor, encapsulando as informações relevantes de uma venda e seus itens.
 namespace InstrumentsStore.Api.Dtos;
 
 public record SaleItemDto(int InstrumentId, string ProductName, decimal UnitPrice, int Quantity, decimal Subtotal)
 {
-    public static SaleItemDto From(SaleItem i) =>
+    public static SaleItemDto From(SaleItem i) => // Cria um SaleItemDto a partir de um SaleItem do modelo de domínio.
         new(i.InstrumentId, i.ProductNameSnapshot, i.UnitPrice, i.Quantity, i.Subtotal);
 }
 
-public record SaleDto(
+public record SaleDto( // Representa uma venda completa, incluindo informações do cliente, status, método de pagamento e itens da venda.
     int Id,
     int? CustomerId,
     string CustomerName,
@@ -31,9 +32,8 @@ public record SaleDto(
         s.Items.Select(SaleItemDto.From).ToList());
 }
 
-public record SaleItemInputDto(int InstrumentId, int Quantity);
+public record SaleItemInputDto(int InstrumentId, int Quantity); // Representa os dados de entrada para um item de venda, incluindo o ID do instrumento e a quantidade desejada.
 
-/// <summary>Usado pelo admin para lançar uma venda manualmente (tipo PDV).</summary>
 public record SaleCreateDto(
     int? CustomerId,
     string? CustomerName,
@@ -41,12 +41,11 @@ public record SaleCreateDto(
     string? CustomerPhone,
     string PaymentMethod,
     int Installments,
-    List<SaleItemInputDto> Items);
+    List<SaleItemInputDto> Items); // Representa os dados de entrada para criar uma nova venda, incluindo informações do cliente, método de pagamento, parcelas e itens da venda.
 
 public record SaleStatusUpdateDto(string Status);
 
-/// <summary>Usado pelo checkout público (carrinho do site do cliente).</summary>
-public record CheckoutDto(
+public record CheckoutDto( // Representa os dados de entrada para o processo de checkout, incluindo informações do cliente, método de pagamento, parcelas e itens da venda.
     string CustomerName,
     string CustomerEmail,
     string CustomerPhone,
@@ -55,4 +54,4 @@ public record CheckoutDto(
     int Installments,
     List<SaleItemInputDto> Items);
 
-public record CheckoutResultDto(int OrderId, decimal Total, DateTime CreatedAt);
+public record CheckoutResultDto(int OrderId, decimal Total, DateTime CreatedAt); // Representa o resultado do processo de checkout, incluindo o ID do pedido, o valor total e a data de criação da venda.

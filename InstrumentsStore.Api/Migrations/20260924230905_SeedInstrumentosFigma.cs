@@ -1,28 +1,27 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-
-#nullable disable
-
-#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+// Esta migração é responsável por inserir dados iniciais para os instrumentos na base de dados.
+// Ela cria a tabela "Instruments" com suas colunas e insere cinco registros de instrumentos musicais, cada um com informações como marca, categoria, descrição, preço, quantidade em estoque, entre outros.
+// Além disso, cria um índice único na coluna "Slug" para garantir que cada instrumento tenha um identificador exclusivo.W
 
 namespace InstrumentsStore.Api.Migrations
 {
-    /// <inheritdoc />
+    
     public partial class SeedInstrumentosFigma : Migration
     {
-        /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
+        
+        protected override void Up(MigrationBuilder migrationBuilder) // Este método é chamado quando a migração é aplicada. Ele cria a tabela "Instruments" e insere os dados iniciais.
         {
             migrationBuilder.AlterDatabase()
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "Instruments",
-                columns: table => new
+                columns: table => new // Define as colunas da tabela "Instruments"
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Slug = table.Column<string>(type: "varchar(255)", nullable: false)
+                    Slug = table.Column<string>(type: "varchar(255)", nullable: false) // Define a coluna "Slug" como uma string de até 255 caracteres, que não pode ser nula
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Name = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -45,11 +44,11 @@ namespace InstrumentsStore.Api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Instruments", x => x.Id);
+                    table.PrimaryKey("PK_Instruments", x => x.Id); // Define a chave primária da tabela como a coluna "Id"
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.InsertData(
+            migrationBuilder.InsertData( // Insere dados iniciais na tabela "Instruments"
                 table: "Instruments",
                 columns: new[] { "Id", "Brand", "Category", "Description", "GalleryUrls", "ImageUrl", "Installments", "Name", "OldPrice", "Price", "Section", "Slug", "StockQuantity" },
                 values: new object[,]
@@ -59,7 +58,7 @@ namespace InstrumentsStore.Api.Migrations
                     { 3, "Roland", "Teclas", "61 teclas sensitivas.", "", "/images/teclado.png", 12, "Teclado Sintetizador", 2500.00m, 2200.00m, "novo", "teclado", 8 },
                     { 4, "Stradivarius", "Cordas", "Peça rara e restaurada.", "", "/images/violino.png", 12, "Violino Clássico", null, null, "exclusivo", "violino", 1 },
                     { 5, "Pearl", "Percussão", "Kit completo com pratos.", "", "/images/bateria.png", 12, "Bateria Acústica", 3500.00m, 2900.00m, "promocao", "bateria", 3 }
-                });
+                }); // Insere cinco registros de instrumentos musicais com suas respectivas informações
 
             migrationBuilder.CreateIndex(
                 name: "IX_Instruments_Slug",
@@ -68,8 +67,7 @@ namespace InstrumentsStore.Api.Migrations
                 unique: true);
         }
 
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
+        protected override void Down(MigrationBuilder migrationBuilder) // Este método é chamado quando a migração é revertida. Ele remove a tabela "Instruments" do banco de dados.
         {
             migrationBuilder.DropTable(
                 name: "Instruments");

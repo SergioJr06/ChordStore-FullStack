@@ -1,5 +1,6 @@
 namespace InstrumentsStore.Api.Models;
-
+// Modelo de dados para instrumentos musicais
+// Este modelo representa os instrumentos que serão vendidos na loja online.
 public class Instrument
 {
     public int Id { get; set; }

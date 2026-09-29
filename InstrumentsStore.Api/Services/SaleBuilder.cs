@@ -9,7 +9,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InstrumentsStore.Api.Services;
 
-public static class SaleBuilder
+// utilizado pelo controller de checkout para validar estoque, montar a venda e baixar o estoque
+
+public static class SaleBuilder // static porque não precisa de estado, só de um método utilitário
 {
     public record Input(
         int? CustomerId,
@@ -22,11 +24,7 @@ public static class SaleBuilder
         List<SaleItemInputDto> Items,
         string Origin);
 
-    /// <summary>
-    /// Valida estoque, monta a venda com os itens "congelados" e baixa o estoque.
-    /// Não chama SaveChanges — quem chamar decide quando salvar (permite tudo em uma transação).
-    /// </summary>
-    public static async Task<(Sale? Sale, string? Error)> BuildAsync(AppDbContext context, Input input)
+    public static async Task<(Sale? Sale, string? Error)> BuildAsync(AppDbContext context, Input input) // retorna a venda pronta ou uma mensagem de erro
     {
         if (input.Items == null || input.Items.Count == 0)
             return (null, "A venda precisa ter pelo menos um item.");
@@ -46,10 +44,10 @@ public static class SaleBuilder
             .Select(g => new SaleItemInputDto(g.Key, g.Sum(i => i.Quantity)))
             .ToList();
 
-        var ids = grouped.Select(i => i.InstrumentId).ToList();
+        var ids = grouped.Select(i => i.InstrumentId).ToList(); // lista de ids dos instrumentos que estão na venda
         var instruments = await context.Instruments.Where(i => ids.Contains(i.Id)).ToListAsync();
 
-        var sale = new Sale
+        var sale = new Sale // monta a venda com os dados do cliente e do pagamento
         {
             CustomerId = input.CustomerId,
             CustomerNameSnapshot = input.CustomerName.Trim(),
@@ -65,7 +63,7 @@ public static class SaleBuilder
 
         decimal total = 0;
 
-        foreach (var line in grouped)
+        foreach (var line in grouped) // para cada item da venda, valida o estoque e monta os itens da venda
         {
             if (line.Quantity <= 0)
                 return (null, "A quantidade de cada item precisa ser maior que zero.");
@@ -80,13 +78,13 @@ public static class SaleBuilder
             if (instrument.StockQuantity < line.Quantity)
                 return (null, $"Estoque insuficiente para \"{instrument.Name}\" (disponível: {instrument.StockQuantity}).");
 
-            var unitPrice = instrument.Price.Value;
-            var subtotal = unitPrice * line.Quantity;
-            total += subtotal;
+            var unitPrice = instrument.Price.Value; // pega o preço do instrumento, que já foi validado para não ser nulo
+            var subtotal = unitPrice * line.Quantity; // calcula o subtotal do item
+            total += subtotal; // acumula o total da venda
 
             instrument.StockQuantity -= line.Quantity;
 
-            sale.Items.Add(new SaleItem
+            sale.Items.Add(new SaleItem // adiciona o item à venda, com o preço e quantidade corretos
             {
                 InstrumentId = instrument.Id,
                 ProductNameSnapshot = instrument.Name,
@@ -96,7 +94,7 @@ public static class SaleBuilder
             });
         }
 
-        sale.Total = total;
-        return (sale, null);
+        sale.Total = total; // define o total da venda
+        return (sale, null); // retorna a venda pronta e sem erro
     }
 }

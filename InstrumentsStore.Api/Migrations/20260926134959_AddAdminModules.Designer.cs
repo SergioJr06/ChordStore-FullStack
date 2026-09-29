@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
+// codigo gerado automaticamente para a migração AddAdminModules
 #nullable disable
 
 namespace InstrumentsStore.Api.Migrations

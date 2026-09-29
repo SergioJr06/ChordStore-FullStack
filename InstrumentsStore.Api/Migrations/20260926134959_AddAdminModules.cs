@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
-
+// codigo gerado automaticamente para a migração, não deve ser alterado manualmente
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
 namespace InstrumentsStore.Api.Migrations

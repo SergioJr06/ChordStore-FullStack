@@ -1,12 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
-  <PropertyGroup>
+	// Projeto da API do InstrumentsStore
+	// Este projeto é responsável por fornecer os endpoints da API RESTful para o InstrumentsStore, permitindo operações CRUD e autenticação via JWT.
+	// JWT: JSON Web Token, um padrão aberto para autenticação e troca de informações seguras entre partes como um objeto JSON.
+	
+	<PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
+	// Pacotes NuGet utilizados no projeto:
+
+	<ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
